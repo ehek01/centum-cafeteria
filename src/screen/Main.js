@@ -7,21 +7,27 @@ import {response} from "../../data/cafeteriaList";
 import Division from "../component/common/Division";
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 
-export default () => {
+export default ({navigation}) => {
   const [cafeteriaList, setCafeteriaList] = useState([])
+
   useEffect(() => {
     fetchData();
   }, []);
 
+  // call api
   const fetchData = () => {
     setCafeteriaList(response.cafeteriaList);
   }
+
+  // event function
   const onPressBellIcon = () => {
     Alert.alert("click");
   }
-
   const onPressCafeBtn = (cafeteria) => {
-    Alert.alert(cafeteria.cafeteriaName);
+    navigation.push('cafeteriaDetail', {cafeteria: cafeteria});
+  }
+  const onPressAllTableBtn = () => {
+    navigation.push('allTable', {cafeteriaList: cafeteriaList});
   }
 
   return (
@@ -39,6 +45,7 @@ export default () => {
         <Content
           cafeteriaList={cafeteriaList}
           onPressCafeBtn={onPressCafeBtn}
+          onPressAllTableBtn={onPressAllTableBtn}
         />
       </SafeAreaView>
     </SafeAreaProvider>

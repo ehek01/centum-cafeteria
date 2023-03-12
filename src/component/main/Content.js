@@ -10,16 +10,21 @@ const CafeteriaComp = ({cafeteria, onPressCafeBtn}) => {
 }
 
 export default (props) => {
+  const {cafeteriaList, onPressCafeBtn,onPressAllTableBtn } = props;
 
   return (
     <View style={styles.container}>
-      {props.cafeteriaList.map((item, index) => (
+      {cafeteriaList.map((item, index) => (
         <CafeteriaComp
           key={index}
-          onPressCafeBtn={props.onPressCafeBtn}
+          onPressCafeBtn={onPressCafeBtn}
           cafeteria={item}
         />
       ))}
+      <TouchableOpacity onPress={onPressAllTableBtn} style={styles.buttonContainer}>
+        <Image source={require('../../../image/goldButton.png')} style={styles.image} />
+        <Text style={styles.text}>한눈에 비교하기</Text>
+      </TouchableOpacity>
    </View>
   )
 }
