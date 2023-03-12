@@ -13,8 +13,9 @@ export default (props) => {
 
   return (
     <View style={styles.container}>
-      {props.cafeteriaList.map((item) => (
+      {props.cafeteriaList.map((item, index) => (
         <CafeteriaComp
+          key={index}
           onPressCafeBtn={props.onPressCafeBtn}
           cafeteria={item}
         />

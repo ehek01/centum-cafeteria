@@ -1,25 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import MainScreen from "./src/screen/MainScreen";
-import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
+import {NavigationContainer} from "@react-navigation/native";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <SafeAreaView
-        style={styles.container}
-        edges={['top', 'right', 'bottom', 'left']}
-      >
-        <MainScreen />
-        <StatusBar style="auto"/>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="main" component={MainScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-});
