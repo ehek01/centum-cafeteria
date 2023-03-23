@@ -1,10 +1,11 @@
 import {Image, View, StyleSheet, Text, TouchableOpacity} from "react-native";
 
 const CafeteriaComp = ({cafeteria, onPressCafeBtn}) => {
+  const {restaurantName} = cafeteria;
   return (
     <TouchableOpacity onPress={() => {onPressCafeBtn(cafeteria)}} style={styles.buttonContainer}>
       <Image source={require('../../../image/goldButton.png')} style={styles.image} />
-      <Text style={styles.text}>{cafeteria.cafeteriaName}</Text>
+      <Text style={styles.text}>{restaurantName}</Text>
     </TouchableOpacity>
   )
 }

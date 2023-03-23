@@ -1,13 +1,13 @@
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
-import {StyleSheet} from "react-native";
+import {StyleSheet, Image} from "react-native";
 import {useEffect} from "react";
 import Table from "../component/cafeferiadetail/Table";
 
 export default ({navigation, route}) => {
   const {cafeteria} = route.params;
-
+  console.log("cafeteria", cafeteria);
   useEffect(() => {
-    navigation.setOptions({title:cafeteria.cafeteriaName});
+    navigation.setOptions({title: cafeteria.restaurantName});
   }, []);
 
   return (
@@ -15,7 +15,10 @@ export default ({navigation, route}) => {
       <SafeAreaView
         style={styles.container}
         edges={['top', 'right', 'bottom', 'left']}>
-        <Table data={cafeteria} />
+        {
+          cafeteria.menuGubun === "I" ? <Image source={{uri: cafeteria.menuData}} style={styles.img}/>
+            : <Table data={cafeteria}/>
+        }
       </SafeAreaView>
     </SafeAreaProvider>
   )
@@ -30,4 +33,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
   },
+  img: {
+    width: 300,
+    height: 400,
+  },
 });
+
+

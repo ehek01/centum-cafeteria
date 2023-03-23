@@ -1,18 +1,42 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+
 export default (props) => {
-  const {cafeteriaName, date, menuNameList} = props.data;
-  return (
-    <View style={styles.container}>
-      <View style={styles.headerRow}>
-        <Text style={styles.headerCell}>
-          {cafeteriaName}({date})
-        </Text>
+  const {restaurantName, date, menuData} = props.data;
+
+  const items = menuData.split(',');
+  const chunkSize = 5;
+  const tableData = [];
+
+  for (let i = 0; i < items.length; i += chunkSize) {
+    tableData.push(items.slice(i, i + chunkSize).join(','));
+  }
+
+  useEffect(() => {
+  }, [menuData]);
+
+  const Header = ({ title }) => (
+    <View style={styles.header}>
+      <Text style={styles.headerText}>{title}</Text>
+    </View>
+  );
+
+  const TableRow = ({ data }) => {
+    const items = data.split(',');
+    return (
+      <View style={styles.row}>
+        {items.map((item, index) => (
+          <Text style={styles.cell} key={index}>{item}</Text>
+        ))}
       </View>
-      {menuNameList?.map((rowData, index) => (
-        <View key={index} style={styles.row}>
-          <Text style={styles.cell}>{rowData}</Text>
-        </View>
+    );
+  };
+
+
+  return (
+    <View>
+      {tableData.map((data, index) => (
+        <TableRow data={data} key={index} />
       ))}
     </View>
   );
