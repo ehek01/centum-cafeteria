@@ -7,6 +7,7 @@ import {response} from "../../data/cafeteriaList";
 import Division from "../component/common/Division";
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
 import axios from "axios";
+import restaurantApi from "../api/restaurantApi";
 
 export default ({navigation}) => {
   const [cafeteriaList, setCafeteriaList] = useState([])
@@ -17,8 +18,7 @@ export default ({navigation}) => {
 
   // call api
   const fetchData = () => {
-    axios.get("http://localhost:8080/restaurant")
-      .then(({data}) => setCafeteriaList(data));
+    restaurantApi.getRestaurantList().then(({data}) => setCafeteriaList(data));
   }
 
   // event function
