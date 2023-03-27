@@ -6,10 +6,7 @@ const API_SUCCESS = 200;
 
 export default {
   getRestaurantList: async () => {
-    const {resultCode, resultData} = (await axios.get(`${apiUrl}/restaurant`)).data;
-
-    if (resultCode === API_SUCCESS) return resultData;
-
-    return null;
+    // return axios.get(`${apiServer}/restaurant`);
+    return axios.get(`https://13.125.250.52:58760/restaurant`);
   },
 }
