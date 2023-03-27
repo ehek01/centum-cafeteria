@@ -6,6 +6,6 @@ export default {
   getRestaurantList: async () => {
     console.error("@@",apiServer);
     // return axios.get(`${apiServer}/restaurant`);
-    return axios.get(`http://13.125.250.52:58760/restaurant`);
+    return axios.get(`https://13.125.250.52:58760/restaurant`);
   },
 }
