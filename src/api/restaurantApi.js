@@ -1,11 +1,10 @@
 import axios from "axios";
-import apiConfig from "../config/apiConfig";
-const {apiUrl} = apiConfig;
 
-const API_SUCCESS = 200;
+const apiServer = __DEV__ ? process.env.DEV_API_SERVER : process.env.PROD_API_SERVER;
 
 export default {
   getRestaurantList: async () => {
+    console.error("@@",apiServer);
     // return axios.get(`${apiServer}/restaurant`);
     return axios.get(`https://13.125.250.52:58760/restaurant`);
   },
