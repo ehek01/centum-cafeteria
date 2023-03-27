@@ -3,10 +3,8 @@ import Title from "../component/main/Title";
 import OptionBar from "../component/main/OptionBar";
 import Content from "../component/main/Content";
 import {useEffect, useState} from "react";
-import {response} from "../../data/cafeteriaList";
 import Division from "../component/common/Division";
 import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
-import axios from "axios";
 import restaurantApi from "../api/restaurantApi";
 
 export default ({navigation}) => {
@@ -18,7 +16,9 @@ export default ({navigation}) => {
 
   // call api
   const fetchData = () => {
-    restaurantApi.getRestaurantList().then(({data}) => setCafeteriaList(data));
+    restaurantApi.getRestaurantList().then((cafeteriaList) => {
+      setCafeteriaList(cafeteriaList);
+    });
   }
 
   // event function
